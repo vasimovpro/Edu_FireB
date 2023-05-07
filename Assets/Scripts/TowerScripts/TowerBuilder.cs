@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace TowerScripts
 {
@@ -9,6 +10,7 @@ namespace TowerScripts
         [SerializeField] private float _towerSize;
         [SerializeField] private Transform _buildPoint;
         [SerializeField] private Block _block;
+        [SerializeField] private Color[] _colors;
 
         private List<Block> _blocks;
 
@@ -20,6 +22,7 @@ namespace TowerScripts
             for (int i = 0; i < _towerSize; i++)
             {
                 Block newBlock = BuildBlock(currentPoint);
+                newBlock.SetColor(_colors[Random.Range(0, _colors.Length)]);
                 _blocks.Add(newBlock);
                 currentPoint = newBlock.transform;
             }
